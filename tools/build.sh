@@ -20,7 +20,7 @@ IMAGE_VERSION=$VERSION_NUMBER
 
 rm -rf $TOP_DIR/build/conf
 source poky/oe-init-build-env
-cp ../meta-renesas/docs/template/conf/tinker-v/*.conf ./conf
+cp ../meta-asus-renesas/docs/template/conf/tinker-v/*.conf ./conf
 
 echo IMAGE_VERSION ?= \"$IMAGE_VERSION\" >> conf/local.conf
 
