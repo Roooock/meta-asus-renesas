@@ -29,6 +29,8 @@ if [ ! -e $TOP_DIR/build/downloads ]; then
     7z x $TOOLS_DIR/oss_pkg_rzfive_v3.0.2.7z -o$TOP_DIR/build
 fi
 
+bitbake -c cleansstate asus-overlay
+bitbake -c cleansstate core-image-bsp
 bitbake -c cleansstate u-boot-asus-renesas
 bitbake -c cleansstate linux-asus-renesas
 
