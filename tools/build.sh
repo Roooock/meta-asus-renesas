@@ -5,6 +5,14 @@ TOOLS_DIR=`dirname $CMD`
 TOP_DIR=$(realpath $TOOLS_DIR/../..)
 
 IMAGE_TYPE=core-image-bsp
+IMAGE_PATH=$TOP_DIR/build/tmp/deploy/images/rzfive-tinker-v
+TARGET_PRODUCT=tinker-v
+IMAGE_FOLDER=$TOP_DIR/Image-${TARGET_PRODUCT}
+
+if [ -e $IMAGE_FOLDER ]; then
+    rm -rf $IMAGE_FOLDER
+fi
+mkdir -p $IMAGE_FOLDER
 
 if [ ! $VERSION ]; then
     VERSION="DEBUG"
@@ -42,3 +50,12 @@ else
     echo "==== Build yocto failed! ===="
     exit 1
 fi
+
+echo "Create image..."
+cp $IMAGE_PATH/Flash_Writer_SCIF_TINKER_V.mot $IMAGE_FOLDER
+cp $IMAGE_PATH/spl-rzfive-tinker-v.srec $IMAGE_FOLDER
+cp $IMAGE_PATH/fit-rzfive-tinker-v.srec $IMAGE_FOLDER
+cp $IMAGE_PATH/Image-rzfive-tinker-v.bin $IMAGE_FOLDER
+cp $IMAGE_PATH/Image-r9a07g043f01-tinker-v.dtb $IMAGE_FOLDER
+cp $IMAGE_PATH/core-image-bsp-rzfive-tinker-v.tar.bz2 $IMAGE_FOLDER
+echo "done."
