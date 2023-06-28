@@ -32,11 +32,6 @@ cp ../meta-asus-renesas/docs/template/conf/tinker-v/*.conf ./conf
 
 echo IMAGE_VERSION ?= \"$IMAGE_VERSION\" >> conf/local.conf
 
-if [ ! -e $TOP_DIR/build/downloads ]; then
-    echo Extra prebuilt packages, please wait...
-    7z x $TOOLS_DIR/oss_pkg_rzfive_v3.0.2.7z -o$TOP_DIR/build
-fi
-
 bitbake -c cleansstate asus-overlay
 bitbake -c cleansstate core-image-bsp
 bitbake -c cleansstate u-boot-asus-renesas
